@@ -14,7 +14,7 @@ public class Counter {
 	}
 	public int contarPares() {
 		List<Integer> pares = new ArrayList<Integer>();
-		for(int i = this.getNumeros().size(); i != 0; i--) {
+		for(int i = this.getNumeros().size() - 1; i != 0; i--) {
 			filtrarPares(pares, i);
 		}
 		return pares.size();
@@ -26,7 +26,7 @@ public class Counter {
 		}
 	}
 	
-	public int ContarImpares() {
+	public int contarImpares() {
 		List<Integer> impares = new ArrayList<Integer>();
 		for(Integer x:this.getNumeros()) {
 			filtrarImpares(impares ,x);
@@ -56,6 +56,7 @@ public class Counter {
 		}
 		return elMayorHastaAhora;
 	}
+	
 	//DUDA: puedo evitar usar dos veces el return?
 	private Integer elQueTieneMasEntre(Integer y, Integer x) {
 		if((this.cantidadDeDigitosPares(y)) >= (this.cantidadDeDigitosPares(x))) {
@@ -83,6 +84,10 @@ public class Counter {
 			multiploMayor = Math.max((x * multiplicador), (y * multiplicador));
 			multiplicador = multiplicador + 1;
 		}
+		return 0;
 	}
+	
+	
+	
 }
 
