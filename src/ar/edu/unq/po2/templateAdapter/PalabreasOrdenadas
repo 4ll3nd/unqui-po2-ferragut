@@ -1,0 +1,72 @@
+public class Ventana extends JFrame{
+public Ventana(DefaultListModel listModel){
+	this.setLayout(new BoxLayout(this.getContentPane(),BoxLayout.Y_AXIS))
+	this.setBounds(new Rectangle(180,180));
+	this.setVisible(true);
+	JLabel label=new JLabel("Lista de palabras");
+	label.setBounds(new Rectangle(40,40));
+	this.add(label);
+	listModel.addElement("casa");
+	listModel.addElement("arbol");
+	listModel.addElement("perro");
+	listModel.addElement("telefono");
+	listModel.addElement("brazo");
+	JList lista=new JList(listModel);
+    lista.setBounds(new Rectangle(110,160));
+	this.add(lista);
+}
+
+public static void main(String[] args) {
+	/*new Ventana(new DefaultListModel);*/
+	  List<Palabra> palabras = arrayAs("Perro", "Almeja", "Casa")
+      new ListaDePalabrasOrdenadasAdapter(palabras);
+  }
+}
+========================================================================
+public class ListaDePalabrasOrdenadas {
+private List<String>palabras;
+private final Comparator comparador;
+public ListaDePalabrasOrdenadas(){
+	this.palabras=new LinkedList<String>();
+	this.comparador=newComparator(){
+@Override
+public int compare(Object palabraA, Object palabraB) {
+	String a=((String)palabraA);
+	String b=(((String)palabraB));
+	return a.compareToIgnoreCase(b);
+   }
+ };
+}
+public void agregarPalabra(String palabra){
+	this.palabras.add(palabra);
+	Collections.sort(this.palabras, this.comparador);
+}
+public Integer cantidadDePalabras(){
+	return this.palabras.size();
+}
+public String getPalabraDePosicion(int posicion){
+	return this.palabras.get(posicion);
+  }
+}
+=======================================================
+public class ListaDePalabrasOrdenadasAdapter extends Ventana{
+	List<String> palabras = new ArrayList<String>();
+
+	public ListaDePalabrasOrdenadasAdapter(new ListaDePalabrasOrdenadas());
+	
+	public void addElement(String palabra) {
+		this.palabras.agregarPalabra(palabra);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
