@@ -36,7 +36,7 @@ public class Articulo {
 		return tipo;
 	}
 	
-	public String lugarDePublicacion() {
+	public String getLugarDePublicacion() {
 		return lugarDePublicacion;
 	}
 	

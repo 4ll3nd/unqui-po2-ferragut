@@ -1,40 +1,38 @@
 package ar.edu.unq.po2.TemplateObserver;
 
-public class SecretarioDeNotificacion {
-	
-	private String interes;
-	private Observer observer;
-	private Aplicacion aplicacion;
+import java.util.List;
 
-	public SecretarioDeNotificacion(Observer x, Aplicacion y) {
-		this.observer = x;
-		this.aplicacion = y;
-	}
+public abstract class SecretarioDeNotificacion implements Observer{
 	
-	public void setInteres(String x) {
-		interes = x;
-		this.getAplicacion().suscribir(this);
-	}
+	private List<Observer> observer;
 	
-	public Aplicacion getAplicacion() {
-		return aplicacion;
-	}
-	
-	public  Observer getObserver() {
+	public  List<Observer> getObservers() {
 		return observer;
 	}
 	
-	public String getInteres() {
-		return interes;
+	public void actualizar(Partido partido) {
+		this.notificar(partido);
 	}
 	
-	public boolean esDeInteres(Partido partido) {
-		return partido.getDeporte().equalsIgnoreCase(interes);
+	public abstract boolean  esDeInteres(Partido partido);
+	
+	public boolean esSecretarioDeDeporte() {
+		return false;
 	}
 	
-	public void notificarSiEsDeInteres(Partido partido) {
+	public boolean esSecretarioDeEquipo() {
+		return false;
+	}	
+	
+	public boolean esSecretarioDeTodo() {
+		return false;
+	}	
+	
+	public void notificar(Partido partido) {
 		if(this.esDeInteres(partido) ) {
-			this.getObserver().actualizar(partido);
+			this.getObservers().stream().forEach(o->o.actualizar(partido));
 		}
 	}
+
+	public abstract boolean  sonMismosIntereses(List<String> deportes);
 }

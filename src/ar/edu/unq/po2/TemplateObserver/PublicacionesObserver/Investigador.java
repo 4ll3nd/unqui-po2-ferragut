@@ -13,7 +13,7 @@ public class Investigador {
 		return intereses;
 	}
 	
-	public void aviso() {
+	public void aviso(Articulo articuloA) {
 		System.out.print("Hay un postulado de su interes!");
 	}
 	
